@@ -62,7 +62,7 @@ $$P_{i,m} = \Phi_i^T \hat\Phi_m,$$
 
 and let
 
-$$P_{i,m} = U_{i,m}\,\Sigma_{i,m}\,V_{i,m}^T$$
+$$P_{i,m} = U_{i,m} \Sigma_{i,m} V_{i,m}^T$$
 
 be its singular value decomposition. The Procrustes alignment from $\Phi_i$ to $\hat\Phi_m$ is
 
@@ -70,7 +70,7 @@ $$Q^\star_{i,m} = U_{i,m} V_{i,m}^T.$$
 
 The aligned local basis and aligned reduced Koopman operator are
 
-$$\tilde\Phi_i = \Phi_i Q^\star_{i,m}, \qquad \tilde A^r_i = (Q^\star_{i,m})^T A^r_i\, Q^\star_{i,m}.$$
+$$\tilde\Phi_i = \Phi_i Q^\star_{i,m}, \qquad \tilde A^r_i = (Q^\star_{i,m})^T A^r_i Q^\star_{i,m}.$$
 
 The node Koopman operator, fitted directly in the node basis $\hat\Phi_m$, is denoted $\hat A^r_m$. Since it is already expressed in the node coordinates, write
 
@@ -82,9 +82,9 @@ $$d_F(i,m) = \lVert \tilde A^r_i - \tilde A^r_m \rVert_F.$$
 
 The **spectral discrepancy** is
 
-$$d_\sigma(A,B) = \min_{\pi \in S_r}\ \max_{1\le k\le r}\ \left| \mu_k(A) - \mu_{\pi(k)}(B) \right|,$$
+$$d_\sigma(A,B) = \min_{\pi \in S_r} \max_{1\le k\le r} \left| \mu_k(A) - \mu_{\pi(k)}(B) \right|,$$
 
-where $\{\mu_k(A)\}_{k=1}^r$ are the eigenvalues of $A$. The **hybrid discrepancy** is
+where $\lbrace \mu_k(A) \rbrace_{k=1}^r$ are the eigenvalues of $A$. The **hybrid discrepancy** is
 
 $$d^\star(i,m) = \begin{cases} \lVert \tilde A^r_i - \tilde A^r_m \rVert_F, & \sigma_{\min}(\Phi_i^T \hat\Phi_m) \ge \cos(\pi/4), \\ d_\sigma(A^r_i, \hat A^r_m), & \sigma_{\min}(\Phi_i^T \hat\Phi_m) < \cos(\pi/4). \end{cases}$$
 
@@ -98,37 +98,37 @@ $$K(s) = \sum_{i \in R_L(s)} d^\star(i,L) + \sum_{i \in R_R(s)} d^\star(i,R).$$
 
 The geometry-only TreeROM objective minimizes $G(s)$, whereas the Koopman-enhanced objective is
 
-$$J_\omega(s) = \frac{G(s)}{\bar\delta_0} + \omega\,\frac{K(s)}{\bar d_0}, \qquad \omega > 0.$$
+$$J_\omega(s) = \frac{G(s)}{\bar\delta_0} + \omega \frac{K(s)}{\bar d_0}, \qquad \omega > 0.$$
 
 ---
 
 ## Lemma 1 (Orthogonal Procrustes alignment)
 
-*Let $\Phi_i, \hat\Phi_m \in \mathbb{R}^{n\times r}$ have orthonormal columns. Then*
+**Statement.** Let $\Phi_i, \hat\Phi_m \in \mathbb{R}^{n\times r}$ have orthonormal columns. Then
 
-$$Q^\star_{i,m} = \underset{Q \in O(r)}{\arg\min}\ \lVert \Phi_i Q - \hat\Phi_m \rVert_F$$
+$$Q^\star_{i,m} = \underset{Q \in O(r)}{\arg\min} \lVert \Phi_i Q - \hat\Phi_m \rVert_F$$
 
-*is given by*
+is given by
 
-$$Q^\star_{i,m} = U_{i,m} V_{i,m}^T, \qquad \text{where} \qquad \Phi_i^T \hat\Phi_m = U_{i,m}\,\Sigma_{i,m}\,V_{i,m}^T.$$
+$$Q^\star_{i,m} = U_{i,m} V_{i,m}^T, \qquad \text{where} \qquad \Phi_i^T \hat\Phi_m = U_{i,m} \Sigma_{i,m} V_{i,m}^T.$$
 
-*If $\Phi_i^T\hat\Phi_m$ is nonsingular and the usual Procrustes nondegeneracy conditions hold, the minimizer is unique.*
+If $\Phi_i^T\hat\Phi_m$ is nonsingular and the usual Procrustes nondegeneracy conditions hold, the minimizer is unique.
 
 **Proof.** Expand the objective:
 
-$$\lVert \Phi_i Q - \hat\Phi_m \rVert_F^2 = \operatorname{tr}\!\left( (\Phi_i Q - \hat\Phi_m)^T (\Phi_i Q - \hat\Phi_m) \right).$$
+$$\lVert \Phi_i Q - \hat\Phi_m \rVert_F^2 = \mathrm{tr}\left( (\Phi_i Q - \hat\Phi_m)^T (\Phi_i Q - \hat\Phi_m) \right).$$
 
 Since both bases are orthonormal,
 
-$$\lVert \Phi_i Q - \hat\Phi_m \rVert_F^2 = 2r - 2\operatorname{tr}(Q^T \Phi_i^T \hat\Phi_m).$$
+$$\lVert \Phi_i Q - \hat\Phi_m \rVert_F^2 = 2r - 2\thinspace\mathrm{tr}(Q^T \Phi_i^T \hat\Phi_m).$$
 
 Thus the problem is equivalent to maximizing
 
-$$\operatorname{tr}(Q^T P_{i,m}), \qquad P_{i,m} = \Phi_i^T \hat\Phi_m.$$
+$$\mathrm{tr}(Q^T P_{i,m}), \qquad P_{i,m} = \Phi_i^T \hat\Phi_m.$$
 
 Using the SVD $P_{i,m} = U_{i,m}\Sigma_{i,m}V_{i,m}^T$,
 
-$$\operatorname{tr}(Q^T P_{i,m}) = \operatorname{tr}(V_{i,m}^T Q^T U_{i,m}\, \Sigma_{i,m}).$$
+$$\mathrm{tr}(Q^T P_{i,m}) = \mathrm{tr}(V_{i,m}^T Q^T U_{i,m} \Sigma_{i,m}).$$
 
 Let
 
@@ -136,7 +136,7 @@ $$M = V_{i,m}^T Q^T U_{i,m}.$$
 
 Since $Q, U_{i,m}, V_{i,m} \in O(r)$, we have $M \in O(r)$. Hence
 
-$$\operatorname{tr}(Q^T P_{i,m}) = \sum_{k=1}^r M_{kk}\,\sigma_k \le \sum_{k=1}^r \sigma_k,$$
+$$\mathrm{tr}(Q^T P_{i,m}) = \sum_{k=1}^r M_{kk} \sigma_k \le \sum_{k=1}^r \sigma_k,$$
 
 because $|M_{kk}| \le 1$. Equality is achieved when $M = I_r$, which gives
 
@@ -150,19 +150,19 @@ $$Q = U_{i,m} V_{i,m}^T. \qquad \blacksquare$$
 
 ## Lemma 2 (Equivariance of reduced Koopman estimators)
 
-*Let $Z = \Phi_i^T X$ and $Z^+ = \Phi_i^T X^+$ denote reduced time-shifted data in the local coordinates. Consider the ridge-regularized reduced operator estimator*
+**Statement.** Let $Z = \Phi_i^T X$ and $Z^+ = \Phi_i^T X^+$ denote reduced time-shifted data in the local coordinates. Consider the ridge-regularized reduced operator estimator
 
 $$A^r(Z, Z^+) = Z^+ Z^T (Z Z^T + \gamma I_r)^{-1}, \qquad \gamma \ge 0,$$
 
-*with the Moore–Penrose interpretation when $\gamma = 0$. If the local basis is rotated by $S \in O(r)$, so that*
+with the Moore–Penrose interpretation when $\gamma = 0$. If the local basis is rotated by $S \in O(r)$, so that
 
 $$Z' = S^T Z, \qquad Z^{+\prime} = S^T Z^+,$$
 
-*then*
+then
 
-$$A^r(Z', Z^{+\prime}) = S^T A^r(Z, Z^+)\, S.$$
+$$A^r(Z', Z^{+\prime}) = S^T A^r(Z, Z^+) S.$$
 
-*The same equivariance holds for the projected full-order operator $A^r_i = \Phi_i^T A_i \Phi_i$.*
+The same equivariance holds for the projected full-order operator $A^r_i = \Phi_i^T A_i \Phi_i$.
 
 **Proof.** For $\gamma > 0$,
 
@@ -178,7 +178,7 @@ $$\left( S^T (Z Z^T + \gamma I_r) S \right)^{-1} = S^T (Z Z^T + \gamma I_r)^{-1}
 
 Thus,
 
-$$A^r(Z', Z^{+\prime}) = S^T Z^+ Z^T S\, S^T (Z Z^T + \gamma I_r)^{-1} S = S^T A^r(Z, Z^+)\, S.$$
+$$A^r(Z', Z^{+\prime}) = S^T Z^+ Z^T S S^T (Z Z^T + \gamma I_r)^{-1} S = S^T A^r(Z, Z^+) S.$$
 
 For $\gamma = 0$, the same statement follows from orthogonal invariance of the Moore–Penrose pseudoinverse. For a projected full-order operator,
 
@@ -188,15 +188,15 @@ $$(\Phi_i S)^T A_i (\Phi_i S) = S^T (\Phi_i^T A_i \Phi_i) S. \qquad \blacksquare
 
 ## Theorem 1 (The aligned Frobenius discrepancy is coordinate-invariant)
 
-*Assume the reduced Koopman estimator is equivariant under right-orthogonal basis rotations, as in Lemma 2. If the local POD basis is replaced by another basis for the same subspace,*
+**Statement.** Assume the reduced Koopman estimator is equivariant under right-orthogonal basis rotations, as in Lemma 2. If the local POD basis is replaced by another basis for the same subspace,
 
 $$\Phi'_i = \Phi_i S_i, \qquad S_i \in O(r),$$
 
-*then the aligned Koopman operator is unchanged:*
+then the aligned Koopman operator is unchanged:
 
 $$\tilde A^{r\prime}_i = \tilde A^r_i.$$
 
-*Consequently, $\lVert \tilde A^r_i - \tilde A^r_m \rVert_F$ is independent of arbitrary POD basis orientations.*
+Consequently, $\lVert \tilde A^r_i - \tilde A^r_m \rVert_F$ is independent of arbitrary POD basis orientations.
 
 **Proof.** Under the basis rotation $\Phi'_i = \Phi_i S_i$, equivariance gives
 
@@ -212,7 +212,7 @@ $$\Phi_i^T \hat\Phi_m = U_{i,m}\Sigma_{i,m}V_{i,m}^T,$$
 
 then
 
-$$(\Phi'_i)^T \hat\Phi_m = (S_i^T U_{i,m})\,\Sigma_{i,m}\,V_{i,m}^T.$$
+$$(\Phi'_i)^T \hat\Phi_m = (S_i^T U_{i,m}) \Sigma_{i,m} V_{i,m}^T.$$
 
 Hence the new Procrustes factor is
 
@@ -228,33 +228,33 @@ Thus the aligned operator depends only on the subspace and the node reference fr
 
 ## Proposition 1 (The π/4 alignment certificate is the exact closeness boundary)
 
-*Let $\theta_{\max}$ be the largest principal angle between $\operatorname{span}(\Phi_i)$ and $\operatorname{span}(\hat\Phi_m)$. Then*
+**Statement.** Let $\theta_{\max}$ be the largest principal angle between $\mathrm{span}(\Phi_i)$ and $\mathrm{span}(\hat\Phi_m)$. Then
 
 $$\sigma_{\min}(\Phi_i^T \hat\Phi_m) = \cos\theta_{\max}.$$
 
-*Moreover,*
+Moreover,
 
 $$\theta_{\max} \le \frac{\pi}{4}$$
 
-*if and only if every aligned principal direction is at least as close to the node subspace as to its orthogonal complement. Equivalently,*
+if and only if every aligned principal direction is at least as close to the node subspace as to its orthogonal complement. Equivalently,
 
-$$\sigma_{\min}(\Phi_i^T \hat\Phi_m) \ge \cos\!\left(\frac{\pi}{4}\right) = \frac{1}{\sqrt{2}}.$$
+$$\sigma_{\min}(\Phi_i^T \hat\Phi_m) \ge \cos\left(\frac{\pi}{4}\right) = \frac{1}{\sqrt{2}}.$$
 
-**Proof.** Let $u \in \operatorname{span}(\Phi_i)$ be a principal direction with principal angle $\theta$. Then
+**Proof.** Let $u \in \mathrm{span}(\Phi_i)$ be a principal direction with principal angle $\theta$. Then
 
-$$u = \cos\theta\, v + \sin\theta\, w,$$
+$$u = \cos\theta \cdot v + \sin\theta \cdot w,$$
 
 where
 
-$$v \in \operatorname{span}(\hat\Phi_m), \qquad w \in \operatorname{span}(\hat\Phi_m)^\perp, \qquad \lVert v\rVert = \lVert w\rVert = 1.$$
+$$v \in \mathrm{span}(\hat\Phi_m), \qquad w \in \mathrm{span}(\hat\Phi_m)^\perp, \qquad \lVert v\rVert = \lVert w\rVert = 1.$$
 
 The distance from $u$ to the node subspace is
 
-$$\operatorname{dist}\!\left(u, \operatorname{span}(\hat\Phi_m)\right) = \sin\theta,$$
+$$\mathrm{dist}\left(u, \mathrm{span}(\hat\Phi_m)\right) = \sin\theta,$$
 
 whereas the distance from $u$ to the orthogonal complement is
 
-$$\operatorname{dist}\!\left(u, \operatorname{span}(\hat\Phi_m)^\perp\right) = \cos\theta.$$
+$$\mathrm{dist}\left(u, \mathrm{span}(\hat\Phi_m)^\perp\right) = \cos\theta.$$
 
 Thus $u$ is at least as close to the node subspace as to its orthogonal complement if and only if
 
@@ -296,19 +296,19 @@ Therefore, the discrepancy branch is $d^\star = d_F$.
 
 ## Theorem 2 (Finite-horizon rollout-error upper bound)
 
-*Under Assumption 1, let*
+**Statement.** Under Assumption 1, let
 
 $$z_{k+1} = \tilde A^r_i z_k, \qquad \hat z_{k+1} = \tilde A^r_m \hat z_k.$$
 
-*Then, for every $k \ge 1$,*
+Then, for every $k \ge 1$,
 
-$$\left\lVert x_k^{(i)} - \hat x_k^{(m)} \right\rVert \le 2 M \rho^k\, \delta(\Phi_i, \hat\Phi_m) + M k \rho^{k-1} \lVert \tilde A^r_i - \tilde A^r_m \rVert_F,$$
+$$\left\lVert x_k^{(i)} - \hat x_k^{(m)} \right\rVert \le 2 M \rho^k \delta(\Phi_i, \hat\Phi_m) + M k \rho^{k-1} \lVert \tilde A^r_i - \tilde A^r_m \rVert_F,$$
 
-*where $\hat x_k^{(m)} = \hat\Phi_m \hat z_k$. Consequently, over a finite horizon $T$,*
+where $\hat x_k^{(m)} = \hat\Phi_m \hat z_k$. Consequently, over a finite horizon $T$,
 
-$$E_T^{(i,m)} \le C_\Phi\, \delta(\Phi_i, \hat\Phi_m) + C_A\, \lVert \tilde A^r_i - \tilde A^r_m \rVert_F,$$
+$$E_T^{(i,m)} \le C_\Phi \delta(\Phi_i, \hat\Phi_m) + C_A \lVert \tilde A^r_i - \tilde A^r_m \rVert_F,$$
 
-*with*
+with
 
 $$C_\Phi = 2M \sum_{k=0}^{T} \rho^k, \qquad C_A = M \sum_{k=1}^{T} k \rho^{k-1}.$$
 
@@ -322,7 +322,7 @@ $$\hat\Pi_m = \hat\Phi_m \hat\Phi_m^T, \qquad C_{i,m} = \hat\Phi_m^T \tilde\Phi_
 
 Since $x_k^{(i)} = \tilde\Phi_i z_k$ and $\hat x_k^{(m)} = \hat\Phi_m \hat z_k$, decompose the state error as
 
-$$x_k^{(i)} - \hat x_k^{(m)} = \tilde\Phi_i z_k - \hat\Phi_m \hat z_k = (I - \hat\Pi_m)\tilde\Phi_i z_k + \hat\Phi_m\!\left( \hat\Phi_m^T \tilde\Phi_i z_k - \hat z_k \right) = (I - \hat\Pi_m)\tilde\Phi_i z_k + \hat\Phi_m \left( (C_{i,m} - I) z_k + (z_k - \hat z_k) \right).$$
+$$x_k^{(i)} - \hat x_k^{(m)} = \tilde\Phi_i z_k - \hat\Phi_m \hat z_k = (I - \hat\Pi_m)\tilde\Phi_i z_k + \hat\Phi_m\left( \hat\Phi_m^T \tilde\Phi_i z_k - \hat z_k \right) = (I - \hat\Pi_m)\tilde\Phi_i z_k + \hat\Phi_m \left( (C_{i,m} - I) z_k + (z_k - \hat z_k) \right).$$
 
 Taking norms and using $\lVert \hat\Phi_m \rVert_2 = 1$,
 
@@ -330,7 +330,7 @@ $$\left\lVert x_k^{(i)} - \hat x_k^{(m)} \right\rVert \le \lVert (I - \hat\Pi_m)
 
 **First**, the orthogonal projection term is controlled by the largest principal angle:
 
-$$\lVert (I - \hat\Pi_m)\tilde\Phi_i z_k \rVert \le \sin\theta_{\max}(\Phi_i, \hat\Phi_m)\, \lVert z_k \rVert.$$
+$$\lVert (I - \hat\Pi_m)\tilde\Phi_i z_k \rVert \le \sin\theta_{\max}(\Phi_i, \hat\Phi_m) \lVert z_k \rVert.$$
 
 Since $\lVert z_k \rVert \le M\rho^k$ and
 
@@ -338,15 +338,15 @@ $$\sin\theta_{\max}(\Phi_i, \hat\Phi_m) \le \left( \sum_{\ell=1}^r \theta_\ell^2
 
 we have
 
-$$\lVert (I - \hat\Pi_m)\tilde\Phi_i z_k \rVert \le M \rho^k\, \delta(\Phi_i, \hat\Phi_m).$$
+$$\lVert (I - \hat\Pi_m)\tilde\Phi_i z_k \rVert \le M \rho^k \delta(\Phi_i, \hat\Phi_m).$$
 
 **Second**, the coordinate mismatch term is not zero in general. The Procrustes alignment implies
 
-$$C_{i,m} = \hat\Phi_m^T \Phi_i Q^\star_{i,m} = V_{i,m}\, \Sigma_{i,m}\, V_{i,m}^T.$$
+$$C_{i,m} = \hat\Phi_m^T \Phi_i Q^\star_{i,m} = V_{i,m} \Sigma_{i,m} V_{i,m}^T.$$
 
 Therefore,
 
-$$\lVert C_{i,m} - I \rVert_2 = \max_\ell\, |\cos\theta_\ell - 1| = 1 - \cos\theta_{\max}.$$
+$$\lVert C_{i,m} - I \rVert_2 = \max_\ell |\cos\theta_\ell - 1| = 1 - \cos\theta_{\max}.$$
 
 For $0 \le \theta \le \pi/2$, one has $1 - \cos\theta \le \sin\theta$. Hence,
 
@@ -354,7 +354,7 @@ $$\lVert C_{i,m} - I \rVert_2 \le \sin\theta_{\max} \le \delta(\Phi_i, \hat\Phi_
 
 and thus
 
-$$\lVert (C_{i,m} - I) z_k \rVert \le M \rho^k\, \delta(\Phi_i, \hat\Phi_m).$$
+$$\lVert (C_{i,m} - I) z_k \rVert \le M \rho^k \delta(\Phi_i, \hat\Phi_m).$$
 
 This is the additional term that must be included; it is absorbed into the Grassmannian contribution, doubling the geometric constant.
 
@@ -364,11 +364,11 @@ $$\lVert z_k - \hat z_k \rVert = \left\lVert \left[ (\tilde A^r_i)^k - (\tilde A
 
 Using the telescoping identity
 
-$$A^k - B^k = \sum_{q=0}^{k-1} A^{\,k-1-q}(A - B)B^{\,q},$$
+$$A^k - B^k = \sum_{q=0}^{k-1} A^{k-1-q}(A - B)B^{q},$$
 
 we obtain
 
-$$\left\lVert (\tilde A^r_i)^k - (\tilde A^r_m)^k \right\rVert_2 \le \sum_{q=0}^{k-1} \lVert \tilde A^r_i \rVert_2^{\,k-1-q}\, \lVert \tilde A^r_i - \tilde A^r_m \rVert_2\, \lVert \tilde A^r_m \rVert_2^{\,q} \le k \rho^{k-1} \lVert \tilde A^r_i - \tilde A^r_m \rVert_2 \le k \rho^{k-1} \lVert \tilde A^r_i - \tilde A^r_m \rVert_F.$$
+$$\left\lVert (\tilde A^r_i)^k - (\tilde A^r_m)^k \right\rVert_2 \le \sum_{q=0}^{k-1} \lVert \tilde A^r_i \rVert_2^{k-1-q} \lVert \tilde A^r_i - \tilde A^r_m \rVert_2 \lVert \tilde A^r_m \rVert_2^{q} \le k \rho^{k-1} \lVert \tilde A^r_i - \tilde A^r_m \rVert_2 \le k \rho^{k-1} \lVert \tilde A^r_i - \tilde A^r_m \rVert_F.$$
 
 Therefore,
 
@@ -376,7 +376,7 @@ $$\lVert z_k - \hat z_k \rVert \le M k \rho^{k-1} \lVert \tilde A^r_i - \tilde A
 
 Combining the three terms gives
 
-$$\left\lVert x_k^{(i)} - \hat x_k^{(m)} \right\rVert \le 2M\rho^k\,\delta(\Phi_i,\hat\Phi_m) + Mk\rho^{k-1}\lVert \tilde A^r_i - \tilde A^r_m \rVert_F.$$
+$$\left\lVert x_k^{(i)} - \hat x_k^{(m)} \right\rVert \le 2M\rho^k\delta(\Phi_i,\hat\Phi_m) + Mk\rho^{k-1}\lVert \tilde A^r_i - \tilde A^r_m \rVert_F.$$
 
 Summing over $k = 0, \dots, T$ gives the finite-horizon result with
 
@@ -388,27 +388,27 @@ $$C_\Phi = 2M\sum_{k=0}^{T}\rho^k, \qquad C_A = M\sum_{k=1}^{T} k\rho^{k-1}. \qq
 
 ## Theorem 3 (K-TreeROM gives a bound-controlled objective for any ω > 0)
 
-*Assume all sample/node pairs involved in a candidate split satisfy the aligned-Frobenius certificate, so that $d^\star = d_F$. Then the finite-horizon split error satisfies*
+**Statement.** Assume all sample/node pairs involved in a candidate split satisfy the aligned-Frobenius certificate, so that $d^\star = d_F$. Then the finite-horizon split error satisfies
 
-$$E_T(s) \le C_\Phi\, G(s) + C_A\, K(s).$$
+$$E_T(s) \le C_\Phi G(s) + C_A K(s).$$
 
-*For any $\omega > 0$, define*
+For any $\omega > 0$, define
 
-$$C_\omega = \max\left\{ C_\Phi \bar\delta_0,\ \frac{C_A \bar d_0}{\omega} \right\}.$$
+$$C_\omega = \max\left\lbrace C_\Phi \bar\delta_0, \frac{C_A \bar d_0}{\omega} \right\rbrace.$$
 
-*Then*
+Then
 
-$$E_T(s) \le C_\omega\, J_\omega(s).$$
+$$E_T(s) \le C_\omega J_\omega(s).$$
 
-*Thus, every positive value of $\omega$ gives a valid scaled upper-bound proxy. Moreover, if*
+Thus, every positive value of $\omega$ gives a valid scaled upper-bound proxy. Moreover, if
 
 $$\omega^\star = \frac{C_A \bar d_0}{C_\Phi \bar\delta_0},$$
 
-*then*
+then
 
 $$J_{\omega^\star}(s) = \frac{1}{C_\Phi \bar\delta_0}\left[ C_\Phi G(s) + C_A K(s) \right],$$
 
-*so minimizing $J_{\omega^\star}$ is exactly equivalent to minimizing the finite-horizon bound proxy*
+so minimizing $J_{\omega^\star}$ is exactly equivalent to minimizing the finite-horizon bound proxy
 
 $$B(s) = C_\Phi G(s) + C_A K(s).$$
 
@@ -418,11 +418,11 @@ $$E_T(s) \le C_\Phi G(s) + C_A K(s).$$
 
 Rewrite
 
-$$G(s) = \bar\delta_0\, \frac{G(s)}{\bar\delta_0}, \qquad K(s) = \frac{\bar d_0}{\omega}\, \omega\frac{K(s)}{\bar d_0}.$$
+$$G(s) = \bar\delta_0 \frac{G(s)}{\bar\delta_0}, \qquad K(s) = \frac{\bar d_0}{\omega} \cdot \omega\frac{K(s)}{\bar d_0}.$$
 
 Therefore,
 
-$$C_\Phi G(s) + C_A K(s) = C_\Phi \bar\delta_0 \frac{G(s)}{\bar\delta_0} + \frac{C_A \bar d_0}{\omega}\, \omega \frac{K(s)}{\bar d_0} \le \max\left\{ C_\Phi\bar\delta_0,\ \frac{C_A \bar d_0}{\omega} \right\} \left( \frac{G(s)}{\bar\delta_0} + \omega\frac{K(s)}{\bar d_0} \right) = C_\omega\, J_\omega(s).$$
+$$C_\Phi G(s) + C_A K(s) = C_\Phi \bar\delta_0 \frac{G(s)}{\bar\delta_0} + \frac{C_A \bar d_0}{\omega} \cdot \omega \frac{K(s)}{\bar d_0} \le \max\left\lbrace C_\Phi\bar\delta_0, \frac{C_A \bar d_0}{\omega} \right\rbrace \left( \frac{G(s)}{\bar\delta_0} + \omega\frac{K(s)}{\bar d_0} \right) = C_\omega J_\omega(s).$$
 
 Thus $E_T(s) \le C_\omega J_\omega(s)$. For the special choice
 
@@ -430,7 +430,7 @@ $$\omega^\star = \frac{C_A \bar d_0}{C_\Phi \bar\delta_0},$$
 
 we get
 
-$$J_{\omega^\star}(s) = \frac{G(s)}{\bar\delta_0} + \frac{C_A \bar d_0}{C_\Phi \bar\delta_0}\, \frac{K(s)}{\bar d_0} = \frac{1}{C_\Phi\bar\delta_0}\left[ C_\Phi G(s) + C_A K(s) \right].$$
+$$J_{\omega^\star}(s) = \frac{G(s)}{\bar\delta_0} + \frac{C_A \bar d_0}{C_\Phi \bar\delta_0} \cdot \frac{K(s)}{\bar d_0} = \frac{1}{C_\Phi\bar\delta_0}\left[ C_\Phi G(s) + C_A K(s) \right].$$
 
 Since the scaling constant is positive, minimizing $J_{\omega^\star}$ is equivalent to minimizing $B(s) = C_\Phi G(s) + C_A K(s)$. $\blacksquare$
 
@@ -438,7 +438,7 @@ Since the scaling constant is positive, minimizing $J_{\omega^\star}$ is equival
 
 ## Corollary 1 (Comparison with the geometry-only objective)
 
-*The geometry-only objective controls only $G(s)$. The Koopman-enhanced objective controls both $G(s)$ and $K(s)$. Therefore, whenever operator mismatch contributes to rollout error and $K(s)$ varies across candidate splits, the Koopman-enhanced objective is a strictly more informative error proxy than the geometry-only objective.*
+**Statement.** The geometry-only objective controls only $G(s)$. The Koopman-enhanced objective controls both $G(s)$ and $K(s)$. Therefore, whenever operator mismatch contributes to rollout error and $K(s)$ varies across candidate splits, the Koopman-enhanced objective is a strictly more informative error proxy than the geometry-only objective.
 
 > **Remark 2 (How to phrase the result without overclaiming).** Theorem 3 should not be read as saying that the experimental value of $\omega$ is necessarily the exact optimal theoretical value $\omega^\star$. Rather, it shows that for any $\omega > 0$, the normalized hybrid objective upper-bounds the same two physical contributors to rollout error: spatial subspace mismatch and reduced-operator mismatch. The special value $\omega^\star$ only gives the exact proportionality between the objective and the idealized bound proxy.
 
@@ -446,19 +446,19 @@ Since the scaling constant is positive, minimizing $J_{\omega^\star}$ is equival
 
 ## Proposition 2 (Geometry-only TreeROM can be non-identifiable)
 
-*Assume an idealized two-regime system with identical subspaces but different dynamics:*
+**Statement.** Assume an idealized two-regime system with identical subspaces but different dynamics:
 
 $$\Phi(\lambda) \equiv \Phi,$$
 
-*and*
+and
 
 $$A(\lambda) = \begin{cases} A_1, & \lambda \le \lambda_s, \\ A_2, & \lambda > \lambda_s. \end{cases}$$
 
-*Then the geometry-only objective is flat:*
+Then the geometry-only objective is flat:
 
 $$G(s) = 0 \quad \text{for all candidate splits } s.$$
 
-*Thus, the true dynamical regime boundary is not identifiable from Grassmannian dispersion alone.*
+Thus, the true dynamical regime boundary is not identifiable from Grassmannian dispersion alone.
 
 **Proof.** Since $\Phi_i = \Phi$ for every sample, the locally aggregated basis in any region is also $\hat\Phi_m = \Phi$, in the idealized noise-free setting. Hence
 
@@ -470,15 +470,15 @@ for every sample and every region. Therefore $G(s) = 0$ for all candidate splits
 
 ## Proposition 3 (The Koopman term restores a positive separation signal)
 
-*In the same two-regime setting, assume the operator spectra are separated by*
+**Statement.** In the same two-regime setting, assume the operator spectra are separated by
 
 $$g = d_\sigma(A_1, A_2) > 0.$$
 
-*For any mixed region with representative $\hat A$, the triangle inequality gives*
+For any mixed region with representative $\hat A$, the triangle inequality gives
 
-$$\max\left\{ d_\sigma(A_1, \hat A),\ d_\sigma(A_2, \hat A) \right\} \ge \frac{g}{2}.$$
+$$\max\left\lbrace d_\sigma(A_1, \hat A), d_\sigma(A_2, \hat A) \right\rbrace \ge \frac{g}{2}.$$
 
-*Thus, any split that mixes spectrally distinct regimes pays a positive Koopman penalty, whereas a pure split does not in the idealized noise-free case.*
+Thus, any split that mixes spectrally distinct regimes pays a positive Koopman penalty, whereas a pure split does not in the idealized noise-free case.
 
 **Proof.** By the triangle inequality for the bottleneck spectral matching distance,
 
@@ -490,7 +490,7 @@ $$g \le d_\sigma(A_1, \hat A) + d_\sigma(A_2, \hat A).$$
 
 Therefore, at least one of the two terms must be at least $g/2$:
 
-$$\max\left\{ d_\sigma(A_1, \hat A),\ d_\sigma(A_2, \hat A) \right\} \ge \frac{g}{2}.$$
+$$\max\left\lbrace d_\sigma(A_1, \hat A), d_\sigma(A_2, \hat A) \right\rbrace \ge \frac{g}{2}.$$
 
 This gives a positive dynamical separation signal on mixed regions. $\blacksquare$
 

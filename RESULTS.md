@@ -46,7 +46,7 @@ K-TreeROM is consistently the best model, and its advantage over TreeROM grows s
 
 Normalizing by parent-node dispersions in
 
-$$\mathcal{J}(s) = \frac{g(s)}{\bar\delta_0} + \omega\,\frac{k(s)}{\bar d_0}$$
+$$\mathcal{J}(s) = \frac{g(s)}{\bar\delta_0} + \omega \frac{k(s)}{\bar d_0}$$
 
 yields $\mathcal{O}(1)$ terms and a dimensionless weight $\omega$. Because the optimal split is selected from discrete candidates, the partitioning is piecewise-constant in $\omega$. A parameter sweep confirms $\omega = 0$ exactly recovers the geometric TreeROM. As $\omega$ increases, beyond a problem-dependent point the dynamical term dictates the ranking; in our examples the partitions and test errors saturate near $\omega \approx 5$. We report all results in this saturated regime.
 
