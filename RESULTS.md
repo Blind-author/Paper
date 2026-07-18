@@ -1,6 +1,6 @@
 # Supplementary Results and Analysis
 
-Companion to the main paper and to the theoretical guarantees in [`KTreeROM_Math_Guarantees.pdf`](KTreeROM_Math_Guarantees.pdf).
+Companion to the main paper and to the theoretical guarantees in README file .
 
 ## Framework Overview
 
