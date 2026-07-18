@@ -1,6 +1,6 @@
 # Mathematical Guarantees for the Koopman-Enhanced Objective (K-TreeROM)
 
-**Complete proofs of the performance guarantees** referenced in Section *Performance Guarantees* of the paper. The full document is reproduced below; a typeset version is available as [`KTreeROM_Math_Guarantees.pdf`](KTreeROM_Math_Guarantees.pdf). Supplementary experimental results and figures are in [`RESULTS.md`](RESULTS.md).
+**Complete proofs of the performance guarantees** referenced in Section *Performance Guarantees* of the paper. The full document is reproduced below,. Supplementary experimental results and figures are in [`RESULTS.md`](RESULTS.md).
 
 **Contents**
 
