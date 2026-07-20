@@ -52,4 +52,4 @@ yields $\mathcal{O}(1)$ terms and a dimensionless weight $\omega$. Because the o
 
 ## Note on Figure Rendering
 
-The error curves connect discrete test cases sorted by $\mu$ with straight line segments (log-scale y-axes in panels (a) and (c)); no spline smoothing or interpolation is applied. Each plotted value corresponds to an actual held-out test case. The apparent smoothness reflects that infiltration solutions vary gradually with $K_s$, so neighboring parameter values — often falling in the same or adjacent tree leaves — have similar errors.
+The error curves connect discrete test cases sorted by $\mu$ with straight line segments (log-scale y-axes in panels (a) and (c)); no spline smoothing or interpolation is applied. Each plotted value corresponds to an actual held-out test case. The apparent smoothness reflects that infiltration solutions vary gradually with $K_s$, so neighboring parameter values — often falling in the same or adjacent tree leaves  have similar errors.
